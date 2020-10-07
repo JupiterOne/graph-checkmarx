@@ -1,28 +1,40 @@
 # Development
 
-Add details here to give a brief overview of how to work with the provider APIs.
-Please reference any SDKs or API docs used to help build the integration here.
-
-## Prerequisites
-
-Supply details about software or tooling (like maybe Docker or Terraform) that
-is needed for development here.
-
-Please supply references to documentation that details how to install those
-dependencies here.
-
-Tools like Node.js and NPM are already covered in the [README](../README.md) so
-don't bother documenting that here.
+This integration focuses on [Checkmarx](https://www.checkmarx.com/) and is using
+[Checkmarx API](https://cxprivatecloud.checkmarx.net/cxrestapi/help/swagger/ui/index)
+for interacting with the Checkmarx platform.
 
 ## Provider account setup
 
-Please provide information about the steps needed to create an account with a
-provider. Images and references to a provider's documentation is very helpful
-for new developers picking up your work.
+TODO
 
 ## Authentication
 
-Supply details here for information on how to authenticate with a provider so
-that developers have an idea of what's needed to hit APIs. It may be useful to
-provide explanations for each value specified in
-[../src/instanceConfigFields.json](../src/instanceConfigFields.json).
+1. Create a .env file at the root of this project and set the CLIENT_USERNAME
+   variable to the admin username that you've set up during the development.
+
+```bash
+CLIENT_USERNAME="account username here"
+```
+
+2. Set the .env's CLIENT_PASSWORD variable to the admin password that you've set
+   up during the development.
+
+```bash
+CLIENT_USERNAME="account username here"
+CLIENT_PASSWORD="account password here"
+```
+
+3. Finally, you also need to set .env's INSTANCE_HOSTNAME variable to your
+   workspace name. (https://{workspace-name}.checkmarx.net/).
+
+```bash
+INSTANCE_HOSTNAME="workspace name"
+INSIGHT_CLIENT_USERNAME="account username here"
+INSIGHT_CLIENT_PASSWORD="account password here"
+```
+
+After following the above steps, you should now be able to start contributing to
+this integration. The integration will pull in the `INSIGHT_CLIENT_USERNAME`,
+`INSIGHT_CLIENT_PASSWORD` and `INSTANCE_HOSTNAME` variables from the `.env` file
+and use them when making requests.
