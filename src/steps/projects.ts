@@ -22,24 +22,29 @@ export async function fetchProjects({
   const apiClient = createAPIClient(instance.config);
 
   await apiClient.iterateProjects(async (project) => {
+    const jobs: Promise<any>[] = [];
+
+    const { links, ...projectWithoutLinks } = project;
+    const projectEntity = createIntegrationEntity({
+      entityData: {
+        source: projectWithoutLinks,
+        assign: {
+          _key: getProjectKey(project.id),
+          _type: entities.PROJECT._type,
+          _class: entities.PROJECT._class,
+          id: `${project.id}`,
+          name: project.name,
+          isPublic: project.isPublic,
+          webLink: `https://${instance.config.instanceHostname}.checkmarx.net/CxWebClient/projectscans.aspx?id=${project.id}`,
+        },
+      },
+    });
+
+    jobs.push(jobState.addEntity(projectEntity));
+
     const teamEntity = await jobState.findEntity(getTeamKey(project.teamId));
     if (teamEntity) {
-      const projectEntity = createIntegrationEntity({
-        entityData: {
-          source: project,
-          assign: {
-            _key: getProjectKey(project.id),
-            _type: entities.PROJECT._type,
-            _class: entities.PROJECT._class,
-            id: `${project.id}`,
-            name: project.name,
-            isPublic: project.isPublic,
-          },
-        },
-      });
-
-      await Promise.all([
-        jobState.addEntity(projectEntity),
+      jobs.push(
         jobState.addRelationship(
           createDirectRelationship({
             _class: RelationshipClass.HAS,
@@ -47,8 +52,10 @@ export async function fetchProjects({
             to: projectEntity,
           }),
         ),
-      ]);
+      );
     }
+
+    await Promise.all(jobs);
   });
 }
 

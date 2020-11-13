@@ -6,7 +6,8 @@ for interacting with the Checkmarx platform.
 
 ## Provider account setup
 
-TODO
+Please contact whomever currently has access to your organization's Checkmarx
+account to get credentials.
 
 ## Authentication
 

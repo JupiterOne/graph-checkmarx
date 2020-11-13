@@ -38,10 +38,7 @@ export type CheckmarxProject = {
     rel: string;
     uri?: string;
   };
-  link: {
-    rel: string;
-    uri: string;
-  };
+  links: any[];
 };
 
 export type CheckmarxScan = {

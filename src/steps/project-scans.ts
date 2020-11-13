@@ -28,49 +28,51 @@ export async function fetchProjectScans({
   await jobState.iterateEntities(
     { _type: entities.PROJECT._type },
     async (projectEntity) => {
-      await apiClient.iterateProjectScans(
+      const lastScan = await apiClient.fetchProjectLastScan(
         projectEntity.id as string,
-        async (scan) => {
-          const scanEntity = createIntegrationEntity({
-            entityData: {
-              source: scan,
-              assign: {
-                _key: getScanKey(scan.id),
-                _type: entities.ASSESSMENT._type,
-                _class: entities.ASSESSMENT._class,
-                id: `${scan.id}`,
-                name: `${scan.id}`,
-                category: 'Vulnerability Scan',
-                summary: scan.scanType.value,
-                internal: !scan.isPublic,
-                status: scan.status.name,
-                isPublic: scan.isPublic,
-                isLocked: scan.isLocked,
-                scanRisk: scan.scanRisk,
-                scanRiskSeverity: scan.scanRiskSeverity,
-              },
-            },
-          });
-
-          await Promise.all([
-            jobState.addEntity(scanEntity),
-            jobState.addRelationship(
-              createDirectRelationship({
-                _class: RelationshipClass.HAS,
-                from: projectEntity,
-                to: scanEntity,
-              }),
-            ),
-            jobState.addRelationship(
-              createDirectRelationship({
-                _class: RelationshipClass.PERFORMED,
-                from: serviceEntity,
-                to: scanEntity,
-              }),
-            ),
-          ]);
-        },
       );
+
+      if (lastScan) {
+        const scanEntity = createIntegrationEntity({
+          entityData: {
+            source: lastScan,
+            assign: {
+              _key: getScanKey(lastScan.id),
+              _type: entities.ASSESSMENT._type,
+              _class: entities.ASSESSMENT._class,
+              id: `${lastScan.id}`,
+              name: `${lastScan.id}`,
+              category: 'Vulnerability Scan',
+              project: lastScan.project.name,
+              summary: lastScan.scanType.value,
+              internal: !lastScan.isPublic,
+              status: lastScan.status.name,
+              isPublic: lastScan.isPublic,
+              isLocked: lastScan.isLocked,
+              scanRisk: lastScan.scanRisk,
+              scanRiskSeverity: lastScan.scanRiskSeverity,
+            },
+          },
+        });
+
+        await Promise.all([
+          jobState.addEntity(scanEntity),
+          jobState.addRelationship(
+            createDirectRelationship({
+              _class: RelationshipClass.HAS,
+              from: projectEntity,
+              to: scanEntity,
+            }),
+          ),
+          jobState.addRelationship(
+            createDirectRelationship({
+              _class: RelationshipClass.PERFORMED,
+              from: serviceEntity,
+              to: scanEntity,
+            }),
+          ),
+        ]);
+      }
     },
   );
 }

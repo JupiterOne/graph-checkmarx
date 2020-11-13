@@ -24,6 +24,12 @@ export class APIClient {
   private readonly instanceHostname: string;
   private readonly clientUsername: string;
   private readonly clientPassword: string;
+  /*
+    Explanation: the reason this accessToken variable is static class variable 
+    is that we don't want each step function's run to request the same (new) token
+    every time. This way, once accessToken value is fetched, it's shared between
+    all the step functions. 
+  */
   private static accessToken: string;
 
   constructor(readonly config: IntegrationConfig) {
@@ -71,6 +77,8 @@ export class APIClient {
         grant_type: 'password',
         scope: 'sast_rest_api',
         client_id: 'resource_owner_client',
+        // The secret is given by Checkmarx's API
+        // https://checkmarx.atlassian.net/wiki/spaces/KC/pages/1187774721/Using+the+CxSAST+REST+API+v8.6.0+and+up
         client_secret: '014DF517-39D1-4453-B7B3-9930C563627C',
       }),
     });
@@ -139,33 +147,42 @@ export class APIClient {
   }
 
   /**
-   * Iterates each scan resource for a given project.
+   * Fetches last scan for a given project.
    *
    * @param projectId the ID of the project
-   * @param iteratee receives each resource to produce entities/relationships
    */
-  public async iterateProjectScans(
+  public async fetchProjectLastScan(
     projectId: string,
-    iteratee: ResourceIteratee<CheckmarxScan>,
-  ): Promise<void> {
+  ): Promise<CheckmarxScan | null> {
     const response = await this.request(
-      this.withBaseUri(`sast/scans?projectId=${projectId}`),
+      this.withBaseUri(`sast/scans?projectId=${projectId}&last=1`),
     );
-    const scans: CheckmarxScan[] = await response.json();
 
-    for (const scan of scans) {
-      await iteratee(scan);
+    const scans: CheckmarxScan[] = await response.json();
+    if (scans.length <= 0) {
+      return null;
     }
+
+    const scan: CheckmarxScan = scans[0];
+    if (scan.status.name === 'Finished' && scan.scanType.value === 'Regular') {
+      return scan;
+    }
+
+    return null;
   }
 
   /**
-   * Iterates each scan resource for a given project.
+   * Fetches and returns scan report for a given scan ID.
    *
    * @param projectId the ID of the project
-   * @param iteratee receives each resource to produce entities/relationships
+   * @param options (optional) error handling callbacks
    */
   public async fetchScanReport(
     scanId: string,
+    options?: {
+      onCsvParseError?: (scanId: string, reportId: string, err: Error) => void;
+      onObtainReportError?: (scanId: string, totalWaitSeconds: number) => void;
+    },
   ): Promise<CheckmarxReport | null> {
     const response = await this.request(
       this.withBaseUri(`reports/sastScan`),
@@ -178,8 +195,10 @@ export class APIClient {
 
     const { reportId }: CheckmarxGeneratedReport = await response.json();
 
+    const waitTime = 1500;
     const maxLoops = 5;
     let loop = 0;
+
     while (loop++ < maxLoops) {
       const statusResponse = await this.request(
         this.withBaseUri(`/reports/sastScan/${reportId}/status`),
@@ -201,7 +220,7 @@ export class APIClient {
             })) as CheckmarxReport;
             return csvObject;
           } catch (err) {
-            console.warn('unable to parse scan report csv', err);
+            options?.onCsvParseError?.(scanId, `${reportId}`, err);
             return null;
           }
         } else if (status.value === 'Failed') {
@@ -209,14 +228,16 @@ export class APIClient {
         }
       }
 
-      await sleep(1500);
+      await sleep(waitTime);
     }
 
+    const totalWaitSeconds = (loop * waitTime) / 1000;
+    options?.onObtainReportError?.(scanId, totalWaitSeconds);
     return null;
   }
 }
 
-function sleep(ms) {
+function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 

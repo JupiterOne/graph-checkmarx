@@ -1,7 +1,6 @@
 import {
   createMockStepExecutionContext,
   Recording,
-  setupRecording,
 } from '@jupiterone/integration-sdk-testing';
 
 import { IntegrationConfig } from '../types';
@@ -11,6 +10,7 @@ import { fetchTeams } from './teams';
 import { fetchProjects } from './projects';
 import { fetchProjectScans } from './project-scans';
 import { fetchScanFindings } from './scan-findings';
+import { setupCheckmarxRecording } from '../../test/helpers/recording';
 
 const DEFAULT_INSTANCE_HOSTNAME = 'cxprivatecloud';
 const DEFAULT_CLIENT_USERNAME = 'INVALID';
@@ -28,7 +28,7 @@ describe('Checkmarx', () => {
   let recording: Recording;
 
   beforeEach(() => {
-    recording = setupRecording({
+    recording = setupCheckmarxRecording({
       directory: __dirname,
       name: 'checkmarx_recordings',
       options: {
@@ -193,6 +193,9 @@ describe('Checkmarx', () => {
             type: 'string',
           },
           category: {
+            type: 'string',
+          },
+          project: {
             type: 'string',
           },
           summary: {
