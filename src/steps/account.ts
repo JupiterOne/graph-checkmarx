@@ -5,33 +5,36 @@ import {
 } from '@jupiterone/integration-sdk-core';
 
 import { IntegrationConfig } from '../types';
+import { entities, ACCOUNT_ENTITY_DATA_KEY } from '../constants';
 
-export const ACCOUNT_ENTITY_KEY = 'entity:account';
+export function getAccountKey(name: string): string {
+  return `checkmarx_account:${name}`;
+}
 
 export async function fetchAccountDetails({
+  instance,
   jobState,
 }: IntegrationStepExecutionContext<IntegrationConfig>) {
+  const company = {
+    name: instance.config.instanceHostname,
+  };
+
   const accountEntity = createIntegrationEntity({
     entityData: {
-      source: {
-        id: 'acme-unique-account-id',
-        name: 'Example Co. Acme Account',
-      },
+      source: company,
       assign: {
-        _key: 'acme-unique-account-id',
-        _type: 'acme_account',
-        _class: 'Account',
-        mfaEnabled: true,
-        // This is a custom property that is not a part of the data model class
-        // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/Account.json
-        manager: 'Manager Name',
+        _key: getAccountKey(company.name),
+        _type: entities.ACCOUNT._type,
+        _class: entities.ACCOUNT._class,
+        webLink: `https://${company.name}.checkmarx.net`,
+        name: company.name,
       },
     },
   });
 
   await Promise.all([
     jobState.addEntity(accountEntity),
-    jobState.setData(ACCOUNT_ENTITY_KEY, accountEntity),
+    jobState.setData(ACCOUNT_ENTITY_DATA_KEY, accountEntity),
   ]);
 }
 
@@ -39,13 +42,7 @@ export const accountSteps: IntegrationStep<IntegrationConfig>[] = [
   {
     id: 'fetch-account',
     name: 'Fetch Account Details',
-    entities: [
-      {
-        resourceName: 'Account',
-        _type: 'acme_account',
-        _class: 'Account',
-      },
-    ],
+    entities: [entities.ACCOUNT],
     relationships: [],
     dependsOn: [],
     executionHandler: fetchAccountDetails,

@@ -2,21 +2,9 @@
 
 ## Setup
 
-In this section, please provide details about how to set up the integration with
-JupiterOne. This may require provisioning some resources on the provider's side
-(perhaps a role, app, or api key) and passing information over to JupiterOne.
-
-## Data Model
-
-Provide an overview here of the resources collected from the integration. Please
-provide a mapping of how the resources collected map to the JupiterOne Data
-Model. The tables below were taken from the Azure integration to provide an
-example of how to display that information.
-
-When you start developing an integration, please clear out the tables below. As
-you add support for new entities and relationships, please update the tables and
-document the addition in the [CHANGELOG.md](../CHANGELOG.md) file at the root of
-the project.
+JupiterOne provides a managed integration for Checkmarx. The integration
+connects directly to Checkmarx SAST API to obtain configuration metadata and
+analyze resource relationships.
 
 <!-- {J1_DOCUMENTATION_MARKER_START} -->
 <!--
@@ -35,19 +23,27 @@ https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md
 
 The following entities are created:
 
-| Resources | Entity `_type` | Entity `_class` |
-| --------- | -------------- | --------------- |
-| Account   | `acme_account` | `Account`       |
+| Resources  | Entity `_type`           | Entity `_class` |
+| ---------- | ------------------------ | --------------- |
+| Account    | `checkmarx_account`      | `Account`       |
+| Assessment | `checkmarx_scan`         | `Assessment`    |
+| Finding    | `checkmarx_finding`      | `Finding`       |
+| Project    | `checkmarx_project`      | `Project`       |
+| Service    | `checkmarx_dast_scanner` | `Service`       |
+| Team       | `checkmarx_team`         | `Team`          |
 
 ### Relationships
 
 The following relationships are created/mapped:
 
-| Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
-| --------------------- | --------------------- | --------------------- |
-| `acme_account`        | **HAS**               | `acme_user`           |
-| `acme_account`        | **HAS**               | `acme_group`          |
-| `acme_group`          | **HAS**               | `acme_user`           |
+| Source Entity `_type`    | Relationship `_class` | Target Entity `_type`    |
+| ------------------------ | --------------------- | ------------------------ |
+| `checkmarx_account`      | **HAS**               | `checkmarx_dast_scanner` |
+| `checkmarx_account`      | **HAS**               | `checkmarx_team`         |
+| `checkmarx_dast_scanner` | **PERFORMED**         | `checkmarx_scan`         |
+| `checkmarx_project`      | **HAS**               | `checkmarx_scan`         |
+| `checkmarx_scan`         | **IDENTIFIED**        | `checkmarx_finding`      |
+| `checkmarx_team`         | **HAS**               | `checkmarx_project`      |
 
 <!--
 ********************************************************************************
