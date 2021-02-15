@@ -1,5 +1,5 @@
 import fetch, { Response } from 'node-fetch';
-import * as qs from 'qs';
+import * as qs from 'querystring';
 import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk-core';
 import parse from 'csv-parse';
 import util from 'util';
@@ -25,10 +25,10 @@ export class APIClient {
   private readonly clientUsername: string;
   private readonly clientPassword: string;
   /*
-    Explanation: the reason this accessToken variable is static class variable 
+    Explanation: the reason this accessToken variable is static class variable
     is that we don't want each step function's run to request the same (new) token
     every time. This way, once accessToken value is fetched, it's shared between
-    all the step functions. 
+    all the step functions.
   */
   private static accessToken: string;
 
