@@ -35,8 +35,12 @@ export async function fetchProjectScans({
 
       if (lastScan) {
         logger.info(
-          { lastScan },
-          `The last scan for project ${projectEntity.name} - ${projectEntity.id}`,
+          {
+            lastScan,
+            projectName: projectEntity.name,
+            projectId: projectEntity.id,
+          },
+          `The last project scan`,
         );
 
         if (
