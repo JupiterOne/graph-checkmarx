@@ -18,6 +18,7 @@ export function getScanKey(id: number): string {
 export async function fetchProjectScans({
   instance,
   jobState,
+  logger,
 }: IntegrationStepExecutionContext<IntegrationConfig>) {
   const apiClient = createAPIClient(instance.config);
 
@@ -33,6 +34,18 @@ export async function fetchProjectScans({
       );
 
       if (lastScan) {
+        logger.info(
+          { lastScan },
+          `The last scan for project ${projectEntity.name} - ${projectEntity.id}`,
+        );
+
+        if (
+          lastScan.status.name !== 'Finished' ||
+          lastScan.scanType.value !== 'Regular'
+        ) {
+          return;
+        }
+
         const scanEntity = createIntegrationEntity({
           entityData: {
             source: lastScan,
