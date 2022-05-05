@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.0.1 - 2022-05-05
+
+### Added
+
+- Logging to get more information about a project's scans
+
 ## 1.0.0 - 2021-02-15
 
 ### Added
