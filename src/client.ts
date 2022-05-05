@@ -164,11 +164,8 @@ export class APIClient {
     }
 
     const scan: CheckmarxScan = scans[0];
-    if (scan.status.name === 'Finished' && scan.scanType.value === 'Regular') {
-      return scan;
-    }
 
-    return null;
+    return scan;
   }
 
   /**
