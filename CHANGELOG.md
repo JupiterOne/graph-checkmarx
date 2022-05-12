@@ -8,6 +8,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.1.0 - 2022-05-12
+
+### Added
+
+- New properties added to entities:
+
+  | Entity              | Properties    |
+  | ------------------- | ------------- |
+  | `checkmarx_finding` | `createdOn`   |
+  | `checkmarx_finding` | `resultState` |
+
 ## 1.0.1 - 2022-05-05
 
 ### Added
