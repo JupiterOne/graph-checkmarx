@@ -395,6 +395,7 @@ Object {
       "name": "Potential Clickjacking on Legacy Browsers",
       "numericSeverity": 2,
       "open": true,
+      "resultState": "To Verify",
       "severity": "Low",
       "targets": Array [
         "test-project",
@@ -446,6 +447,7 @@ Object {
       "name": "Client Privacy Violation",
       "numericSeverity": 3,
       "open": true,
+      "resultState": "To Verify",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -497,6 +499,7 @@ Object {
       "name": "Client Privacy Violation",
       "numericSeverity": 3,
       "open": true,
+      "resultState": "To Verify",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -548,6 +551,7 @@ Object {
       "name": "Client Privacy Violation",
       "numericSeverity": 3,
       "open": true,
+      "resultState": "To Verify",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -599,6 +603,7 @@ Object {
       "name": "Missing HSTS Header",
       "numericSeverity": 3,
       "open": true,
+      "resultState": "To Verify",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
