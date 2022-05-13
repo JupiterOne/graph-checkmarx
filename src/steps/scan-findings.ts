@@ -103,6 +103,7 @@ export async function fetchScanFindings({
               category: 'sast-scan',
               severity: finding['Result Severity'],
               resultState: finding['Result State'],
+              resultStatus: finding['Result Status'],
               numericSeverity: getNumericSeverity(finding['Result Severity']),
               open: true,
               webLink: finding.Link,
