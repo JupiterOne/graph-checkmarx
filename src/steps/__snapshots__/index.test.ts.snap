@@ -396,6 +396,7 @@ Object {
       "numericSeverity": 2,
       "open": true,
       "resultState": "To Verify",
+      "resultStatus": "New",
       "severity": "Low",
       "targets": Array [
         "test-project",
@@ -448,6 +449,7 @@ Object {
       "numericSeverity": 3,
       "open": true,
       "resultState": "To Verify",
+      "resultStatus": "Recurrent",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -500,6 +502,7 @@ Object {
       "numericSeverity": 3,
       "open": true,
       "resultState": "To Verify",
+      "resultStatus": "Recurrent",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -552,6 +555,7 @@ Object {
       "numericSeverity": 3,
       "open": true,
       "resultState": "To Verify",
+      "resultStatus": "Recurrent",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",
@@ -604,6 +608,7 @@ Object {
       "numericSeverity": 3,
       "open": true,
       "resultState": "To Verify",
+      "resultStatus": "Recurrent",
       "severity": "Medium",
       "targets": Array [
         "another-test-project",

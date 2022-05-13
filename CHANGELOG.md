@@ -8,6 +8,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.2.0 - 2022-05-13
+
+### Added
+
+- New properties added to entities:
+
+  | Entity              | Properties     |
+  | ------------------- | -------------- |
+  | `checkmarx_finding` | `resultStatus` |
+
 ## 1.1.0 - 2022-05-12
 
 ### Added
