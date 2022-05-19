@@ -115,7 +115,8 @@ describe('Checkmarx', () => {
             type: 'array',
           },
           function: {
-            type: 'string',
+            type: 'array',
+            items: { type: 'string' },
           },
         },
       },

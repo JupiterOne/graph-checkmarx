@@ -42,7 +42,9 @@ Object {
       ],
       "createdOn": undefined,
       "displayName": "Checkmarx DAST",
-      "function": "DAST",
+      "function": Array [
+        "DAST",
+      ],
       "name": "Checkmarx DAST",
     },
     Object {
