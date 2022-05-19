@@ -36,7 +36,7 @@ export type CheckmarxProject = {
   sourceSettingsLink: {
     type: string;
     rel: string;
-    uri?: string;
+    uri?: string | null;
   };
   links: any[];
 };

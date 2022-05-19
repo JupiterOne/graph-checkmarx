@@ -18,6 +18,7 @@
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc",
     "test": "jest",
+    "test:env": "LOAD_ENV=1 yarn test",
     "test:ci": "yarn lint && yarn type-check && yarn test",
     "build": "tsc -p tsconfig.dist.json --declaration",
     "prepush": "yarn lint && yarn type-check && jest --changedSince main",
@@ -31,11 +32,13 @@
     "@jupiterone/integration-sdk-dev-tools": "^5.7.0",
     "@jupiterone/integration-sdk-testing": "^5.7.0",
     "@types/csv-parse": "^1.2.2",
+    "@types/git-url-parse": "^9.0.1",
     "@types/node-fetch": "^2.5.7",
     "@types/p-queue": "^3.2.1"
   },
   "dependencies": {
     "csv-parse": "^4.15.1",
+    "git-url-parse": "^11.6.0",
     "node-fetch": "^2.6.1",
     "p-queue": "^6.6.2"
   }

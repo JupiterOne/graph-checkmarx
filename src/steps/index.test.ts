@@ -10,9 +10,9 @@ import { fetchTeams } from './teams';
 import { fetchProjects } from './projects';
 import { fetchProjectScans } from './project-scans';
 import { fetchScanFindings } from './scan-findings';
-import { setupCheckmarxRecording } from '../../test/helpers/recording';
+import { setupCheckmarxRecording } from '../../test/recording';
 
-const DEFAULT_INSTANCE_HOSTNAME = 'cxprivatecloud';
+const DEFAULT_INSTANCE_HOSTNAME = 'partners9x';
 const DEFAULT_CLIENT_USERNAME = 'INVALID';
 const DEFAULT_CLIENT_PASSWORD = 'INVALID';
 
@@ -22,7 +22,7 @@ const integrationConfig: IntegrationConfig = {
   clientPassword: process.env.CLIENT_PASSWORD || DEFAULT_CLIENT_PASSWORD,
 };
 
-jest.setTimeout(20 * 1000);
+jest.setTimeout(60 * 1000);
 
 describe('Checkmarx', () => {
   let recording: Recording;
@@ -168,6 +168,13 @@ describe('Checkmarx', () => {
           isPublic: {
             type: 'boolean',
           },
+          public: {
+            type: 'boolean',
+          },
+          remoteSettingsLinkType: { type: 'string' },
+          remoteSettingsUrl: { type: 'string' },
+          remoteSettingsBranch: { type: 'string' },
+          remoteSettingsUseSsh: { type: 'boolean' },
         },
       },
     });

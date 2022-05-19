@@ -100,6 +100,7 @@ The following relationships are created/mapped:
 | `checkmarx_account`      | **HAS**               | `checkmarx_team`         |
 | `checkmarx_dast_scanner` | **PERFORMED**         | `checkmarx_scan`         |
 | `checkmarx_project`      | **HAS**               | `checkmarx_scan`         |
+| `checkmarx_project`      | **USES**              | `CodeRepo`               |
 | `checkmarx_scan`         | **IDENTIFIED**        | `checkmarx_finding`      |
 | `checkmarx_team`         | **HAS**               | `checkmarx_project`      |
 
