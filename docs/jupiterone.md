@@ -100,9 +100,16 @@ The following relationships are created:
 | `checkmarx_account`      | **HAS**               | `checkmarx_team`         |
 | `checkmarx_dast_scanner` | **PERFORMED**         | `checkmarx_scan`         |
 | `checkmarx_project`      | **HAS**               | `checkmarx_scan`         |
-| `checkmarx_project`      | **USES**              | `CodeRepo`               |
 | `checkmarx_scan`         | **IDENTIFIED**        | `checkmarx_finding`      |
 | `checkmarx_team`         | **HAS**               | `checkmarx_project`      |
+
+### Mapped Relationships
+
+The following mapped relationships are created:
+
+| Source Entity `_type` | Relationship `_class` | Target Entity `_type` | Direction |
+| --------------------- | --------------------- | --------------------- | --------- |
+| `checkmarx_project`   | **USES**              | `*CodeRepo*`          | FORWARD   |
 
 <!--
 ********************************************************************************

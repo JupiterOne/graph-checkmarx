@@ -12,7 +12,7 @@ import {
 
 import { APIClient, createAPIClient } from '../client';
 import { CheckmarxProject, IntegrationConfig } from '../types';
-import { entities, relationships } from '../constants';
+import { entities, mappedRelationships, relationships } from '../constants';
 import { getTeamKey } from './teams';
 import gitUrlParse from 'git-url-parse';
 
@@ -147,7 +147,8 @@ export const projectSteps: IntegrationStep<IntegrationConfig>[] = [
     id: 'fetch-projects',
     name: 'Fetch Projects',
     entities: [entities.PROJECT],
-    relationships: [relationships.TEAM_HAS_PROJECT, relationships.PROJECT_REPO],
+    relationships: [relationships.TEAM_HAS_PROJECT],
+    mappedRelationships: [mappedRelationships.PROJECT_REPO],
     dependsOn: ['fetch-teams'],
     executionHandler: fetchProjects,
   },
