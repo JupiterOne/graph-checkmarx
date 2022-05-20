@@ -1,6 +1,8 @@
 import {
   RelationshipClass,
+  RelationshipDirection,
   StepEntityMetadata,
+  StepMappedRelationshipMetadata,
   StepRelationshipMetadata,
 } from '@jupiterone/integration-sdk-core';
 
@@ -102,5 +104,20 @@ export const relationships: Record<
     _class: RelationshipClass.USES,
     sourceType: entities.PROJECT._type,
     targetType: 'CodeRepo',
+  },
+};
+
+type MappedRelationshipConstantKeys = 'PROJECT_REPO';
+
+export const mappedRelationships: Record<
+  MappedRelationshipConstantKeys,
+  StepMappedRelationshipMetadata
+> = {
+  PROJECT_REPO: {
+    _type: 'checkmarx_project_uses_coderepo',
+    _class: RelationshipClass.USES,
+    sourceType: entities.PROJECT._type,
+    targetType: 'CodeRepo',
+    direction: RelationshipDirection.FORWARD,
   },
 };
