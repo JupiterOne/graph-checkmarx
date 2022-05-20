@@ -8,6 +8,26 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.3.0 - 2022-05-20
+
+### Added
+
+- New properties added to entities:
+
+  | Entity              | Properties               |
+  | ------------------- | ------------------------ |
+  | `checkmarx_project` | `public`                 |
+  | `checkmarx_project` | `remoteSettingsLinkType` |
+  | `checkmarx_project` | `remoteSettingsUrl`      |
+  | `checkmarx_project` | `remoteSettingsBranch`   |
+  | `checkmarx_project` | `remoteSettingsUseSsh`   |
+
+- Added support for ingesting the following **new** mapped relationships:
+
+  | Source              | class    | Target     |
+  | ------------------- | -------- | ---------- |
+  | `checkmarx_project` | **USES** | `CodeRepo` |
+
 ## 1.2.0 - 2022-05-13
 
 ### Added
