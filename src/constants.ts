@@ -54,7 +54,8 @@ type RelationshipConstantKeys =
   | 'TEAM_HAS_PROJECT'
   | 'SERVICE_PERFORMED_ASSESSMENT'
   | 'PROJECT_HAS_ASSESSMENT'
-  | 'ASSESSMENT_IDENTIFIED_FINDING';
+  | 'ASSESSMENT_IDENTIFIED_FINDING'
+  | 'PROJECT_REPO';
 
 export const relationships: Record<
   RelationshipConstantKeys,
@@ -95,5 +96,11 @@ export const relationships: Record<
     _class: RelationshipClass.IDENTIFIED,
     sourceType: entities.ASSESSMENT._type,
     targetType: entities.FINDING._type,
+  },
+  PROJECT_REPO: {
+    _type: 'checkmarx_project_uses_coderepo',
+    _class: RelationshipClass.USES,
+    sourceType: entities.PROJECT._type,
+    targetType: 'CodeRepo',
   },
 };

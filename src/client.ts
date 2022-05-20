@@ -130,6 +130,23 @@ export class APIClient {
     }
   }
 
+  async getProjectRemoteSettings(
+    /**
+     * Pulled from the project raw data at path `project.sourceSettingsLink.uri`
+     *
+     * Ex: `/projects/466/sourceCode/remoteSettings/git`
+     */
+    sourceSettingsLinkUri: string,
+  ): Promise<any> {
+    const response = await this.request(
+      this.withBaseUri(sourceSettingsLinkUri),
+    );
+
+    if (response.status === 404) return undefined;
+    const settings = await response.json();
+    return settings;
+  }
+
   /**
    * Iterates each team resource in the provider.
    *
@@ -198,7 +215,7 @@ export class APIClient {
 
     while (loop++ < maxLoops) {
       const statusResponse = await this.request(
-        this.withBaseUri(`/reports/sastScan/${reportId}/status`),
+        this.withBaseUri(`reports/sastScan/${reportId}/status`),
       );
 
       if (statusResponse.ok) {

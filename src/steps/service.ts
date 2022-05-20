@@ -40,7 +40,7 @@ export async function fetchServiceDetails({
         name: service.name,
         displayName: service.name,
         category: ['software', 'other'],
-        function: 'DAST',
+        function: ['DAST'],
       },
     },
   });

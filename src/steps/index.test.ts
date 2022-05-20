@@ -10,9 +10,9 @@ import { fetchTeams } from './teams';
 import { fetchProjects } from './projects';
 import { fetchProjectScans } from './project-scans';
 import { fetchScanFindings } from './scan-findings';
-import { setupCheckmarxRecording } from '../../test/helpers/recording';
+import { setupCheckmarxRecording } from '../../test/recording';
 
-const DEFAULT_INSTANCE_HOSTNAME = 'cxprivatecloud';
+const DEFAULT_INSTANCE_HOSTNAME = 'partners9x';
 const DEFAULT_CLIENT_USERNAME = 'INVALID';
 const DEFAULT_CLIENT_PASSWORD = 'INVALID';
 
@@ -22,7 +22,7 @@ const integrationConfig: IntegrationConfig = {
   clientPassword: process.env.CLIENT_PASSWORD || DEFAULT_CLIENT_PASSWORD,
 };
 
-jest.setTimeout(20 * 1000);
+jest.setTimeout(60 * 1000);
 
 describe('Checkmarx', () => {
   let recording: Recording;
@@ -59,7 +59,14 @@ describe('Checkmarx', () => {
     expect({
       numCollectedEntities: context.jobState.collectedEntities.length,
       numCollectedRelationships: context.jobState.collectedRelationships.length,
-      collectedEntities: context.jobState.collectedEntities,
+      collectedEntities: context.jobState.collectedEntities.map((e) => ({
+        ...e,
+        // HACK (austinkelleher): It looks like the formatting that Checkmarkx
+        // uses does not include the timezone and it's causing issues with tests
+        //
+        // See a failing SDK test here: https://github.com/JupiterOne/sdk/commit/d88453dbf87e04802b6e81a398123b10e1a344f0#diff-eb9509d3689a5d1dde0aaf6a4f037d78ee0c178b48400ccc3249d8b84f726328R155
+        createdOn: 123456789,
+      })),
       collectedRelationships: context.jobState.collectedRelationships,
       encounteredTypes: context.jobState.encounteredTypes,
     }).toMatchSnapshot();
@@ -115,7 +122,8 @@ describe('Checkmarx', () => {
             type: 'array',
           },
           function: {
-            type: 'string',
+            type: 'array',
+            items: { type: 'string' },
           },
         },
       },
@@ -168,6 +176,13 @@ describe('Checkmarx', () => {
           isPublic: {
             type: 'boolean',
           },
+          public: {
+            type: 'boolean',
+          },
+          remoteSettingsLinkType: { type: 'string' },
+          remoteSettingsUrl: { type: 'string' },
+          remoteSettingsBranch: { type: 'string' },
+          remoteSettingsUseSsh: { type: 'boolean' },
         },
       },
     });

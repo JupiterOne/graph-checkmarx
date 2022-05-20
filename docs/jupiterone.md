@@ -71,7 +71,7 @@ NOTE: ALL OF THE FOLLOWING DOCUMENTATION IS GENERATED USING THE
 "j1-integration document" COMMAND. DO NOT EDIT BY HAND! PLEASE SEE THE DEVELOPER
 DOCUMENTATION FOR USAGE INFORMATION:
 
-https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md
+https://github.com/JupiterOne/sdk/blob/main/docs/integrations/development.md
 ********************************************************************************
 -->
 
@@ -92,7 +92,7 @@ The following entities are created:
 
 ### Relationships
 
-The following relationships are created/mapped:
+The following relationships are created:
 
 | Source Entity `_type`    | Relationship `_class` | Target Entity `_type`    |
 | ------------------------ | --------------------- | ------------------------ |
@@ -100,6 +100,7 @@ The following relationships are created/mapped:
 | `checkmarx_account`      | **HAS**               | `checkmarx_team`         |
 | `checkmarx_dast_scanner` | **PERFORMED**         | `checkmarx_scan`         |
 | `checkmarx_project`      | **HAS**               | `checkmarx_scan`         |
+| `checkmarx_project`      | **USES**              | `CodeRepo`               |
 | `checkmarx_scan`         | **IDENTIFIED**        | `checkmarx_finding`      |
 | `checkmarx_team`         | **HAS**               | `checkmarx_project`      |
 

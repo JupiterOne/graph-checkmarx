@@ -4,14 +4,37 @@ import {
   setupRecording,
   SetupRecordingInput,
 } from '@jupiterone/integration-sdk-testing';
-import isJson from '../../src/utils/isJson';
+import isJson from '../src/utils/isJson';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+if (isRecordingEnabled()) {
+  dotenv.config({
+    path: path.join(__dirname, '../.env'),
+  });
+}
+
+function isRecordingEnabled() {
+  return Boolean(process.env.LOAD_ENV) === true;
+}
 
 export function setupCheckmarxRecording(
   input: Omit<SetupRecordingInput, 'mutateEntry'>,
 ): Recording {
+  const recordingEnabled = isRecordingEnabled();
+
   return setupRecording({
     ...input,
     mutateEntry: mutateRecordingEntry,
+    options: {
+      mode: recordingEnabled ? 'record' : 'replay',
+      recordIfMissing: recordingEnabled,
+      recordFailedRequests: false,
+      matchRequestsBy: {
+        headers: false,
+        body: false,
+      },
+    },
   });
 }
 
