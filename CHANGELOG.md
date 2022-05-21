@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.3.1 - 2022-05-21
+
+- Switch `checkmarx_project` **USES** `CodeRepo` to `SCANS` relationship
+  `_class`
+
 ## 1.3.0 - 2022-05-20
 
 ### Added

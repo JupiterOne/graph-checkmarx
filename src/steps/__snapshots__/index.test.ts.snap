@@ -78507,8 +78507,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:456|uses|FORWARD:_class=CodeRepo:name=graph-checkmarx:owner=jupiterone",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:456|scans|FORWARD:_class=CodeRepo:name=graph-checkmarx:owner=jupiterone",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78526,8 +78526,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78538,8 +78538,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:466|uses|FORWARD:_class=CodeRepo:name=nodegoat:owner=owasp",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:466|scans|FORWARD:_class=CodeRepo:name=nodegoat:owner=owasp",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78557,8 +78557,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78577,8 +78577,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:468|uses|FORWARD:_class=CodeRepo:name=bodgeit:owner=tjarrettveracode",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:468|scans|FORWARD:_class=CodeRepo:name=bodgeit:owner=tjarrettveracode",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78596,8 +78596,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78608,8 +78608,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:471|uses|FORWARD:_class=CodeRepo:name=railsgoat:owner=owasp",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:471|scans|FORWARD:_class=CodeRepo:name=railsgoat:owner=owasp",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78627,8 +78627,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78639,8 +78639,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:472|uses|FORWARD:_class=CodeRepo:name=cloudgoat:owner=rhinosecuritylabs",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:472|scans|FORWARD:_class=CodeRepo:name=cloudgoat:owner=rhinosecuritylabs",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78658,8 +78658,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78670,8 +78670,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:474|uses|FORWARD:_class=CodeRepo:name=verademo-java:owner=jtsmith2020",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:474|scans|FORWARD:_class=CodeRepo:name=verademo-java:owner=jtsmith2020",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78689,8 +78689,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78701,8 +78701,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:475|uses|FORWARD:_class=CodeRepo:name=dvna:owner=isp1r0",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:475|scans|FORWARD:_class=CodeRepo:name=dvna:owner=isp1r0",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78720,8 +78720,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78732,8 +78732,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:476|uses|FORWARD:_class=CodeRepo:name=vulnerableapp:owner=sasanlabs",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:476|scans|FORWARD:_class=CodeRepo:name=vulnerableapp:owner=sasanlabs",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78751,8 +78751,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78763,8 +78763,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:477|uses|FORWARD:_class=CodeRepo:name=vulnerableapp-php:owner=sasanlabs",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:477|scans|FORWARD:_class=CodeRepo:name=vulnerableapp-php:owner=sasanlabs",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78782,8 +78782,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78810,8 +78810,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:486|uses|FORWARD:_class=CodeRepo:name=webgoatphp:owner=julz0815",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:486|scans|FORWARD:_class=CodeRepo:name=webgoatphp:owner=julz0815",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78829,8 +78829,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78841,8 +78841,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:494|uses|FORWARD:_class=CodeRepo:name=hackazon:owner=ericanagle",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:494|scans|FORWARD:_class=CodeRepo:name=hackazon:owner=ericanagle",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78860,8 +78860,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -78872,8 +78872,8 @@ Object {
       "displayName": "HAS",
     },
     Object {
-      "_class": "USES",
-      "_key": "checkmarx_project:495|uses|FORWARD:_class=CodeRepo:name=pygoat:owner=ericanagle",
+      "_class": "SCANS",
+      "_key": "checkmarx_project:495|scans|FORWARD:_class=CodeRepo:name=pygoat:owner=ericanagle",
       "_mapping": Object {
         "relationshipDirection": "FORWARD",
         "skipTargetCreation": true,
@@ -78891,8 +78891,8 @@ Object {
           ],
         ],
       },
-      "_type": "checkmarx_project_uses_coderepo",
-      "displayName": "USES",
+      "_type": "checkmarx_project_scans_coderepo",
+      "displayName": "SCANS",
     },
     Object {
       "_class": "HAS",
@@ -89823,7 +89823,7 @@ Object {
     "checkmarx_account_has_team",
     "checkmarx_project",
     "checkmarx_team_has_project",
-    "checkmarx_project_uses_coderepo",
+    "checkmarx_project_scans_coderepo",
     "checkmarx_scan",
     "checkmarx_project_has_scan",
     "checkmarx_dast_scanner_performed_scan",
