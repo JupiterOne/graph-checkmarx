@@ -62,8 +62,8 @@ function buildProjectRepoMappedRelationship(projectEntity: Entity) {
   if (!parsedGitUrl.owner || !parsedGitUrl.name) return undefined;
 
   return createMappedRelationship({
-    _class: RelationshipClass.USES,
-    _type: relationships.PROJECT_REPO._type,
+    _class: mappedRelationships.PROJECT_REPO._class,
+    _type: mappedRelationships.PROJECT_REPO._type,
     _mapping: {
       relationshipDirection: RelationshipDirection.FORWARD,
       sourceEntityKey: projectEntity._key,

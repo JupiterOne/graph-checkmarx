@@ -109,7 +109,7 @@ The following mapped relationships are created:
 
 | Source Entity `_type` | Relationship `_class` | Target Entity `_type` | Direction |
 | --------------------- | --------------------- | --------------------- | --------- |
-| `checkmarx_project`   | **USES**              | `*CodeRepo*`          | FORWARD   |
+| `checkmarx_project`   | **SCANS**             | `*CodeRepo*`          | FORWARD   |
 
 <!--
 ********************************************************************************

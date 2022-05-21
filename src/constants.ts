@@ -56,8 +56,7 @@ type RelationshipConstantKeys =
   | 'TEAM_HAS_PROJECT'
   | 'SERVICE_PERFORMED_ASSESSMENT'
   | 'PROJECT_HAS_ASSESSMENT'
-  | 'ASSESSMENT_IDENTIFIED_FINDING'
-  | 'PROJECT_REPO';
+  | 'ASSESSMENT_IDENTIFIED_FINDING';
 
 export const relationships: Record<
   RelationshipConstantKeys,
@@ -99,12 +98,6 @@ export const relationships: Record<
     sourceType: entities.ASSESSMENT._type,
     targetType: entities.FINDING._type,
   },
-  PROJECT_REPO: {
-    _type: 'checkmarx_project_uses_coderepo',
-    _class: RelationshipClass.USES,
-    sourceType: entities.PROJECT._type,
-    targetType: 'CodeRepo',
-  },
 };
 
 type MappedRelationshipConstantKeys = 'PROJECT_REPO';
@@ -114,8 +107,8 @@ export const mappedRelationships: Record<
   StepMappedRelationshipMetadata
 > = {
   PROJECT_REPO: {
-    _type: 'checkmarx_project_uses_coderepo',
-    _class: RelationshipClass.USES,
+    _type: 'checkmarx_project_scans_coderepo',
+    _class: RelationshipClass.SCANS,
     sourceType: entities.PROJECT._type,
     targetType: 'CodeRepo',
     direction: RelationshipDirection.FORWARD,
