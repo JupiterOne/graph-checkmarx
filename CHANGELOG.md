@@ -8,6 +8,17 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.5.0 - 2022-05-24
+
+- New properties added to entities:
+
+  | Entity              | Properties     |
+  | ------------------- | -------------- |
+  | `checkmarx_scan`    | `startedOn`    |
+  | `checkmarx_scan`    | `completedOn`  |
+  | `checkmarx_scan` | `scanDuration` |
+  | `checkmarx_scan` | `createdOn`    |
+
 ## 1.4.0 - 2022-05-24
 
 - Always ingest the last successful Checkmarx scan when the latest scan for the
