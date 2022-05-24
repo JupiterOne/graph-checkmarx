@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.4.0 - 2022-05-24
+
+- Always ingest the last successful Checkmarx scan when the latest scan for the
+  Checkmarx project was marked as "Failed"
+
 ## 1.3.1 - 2022-05-21
 
 - Switch `checkmarx_project` **USES** `CodeRepo` to `SCANS` relationship

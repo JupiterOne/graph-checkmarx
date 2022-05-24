@@ -4,15 +4,107 @@ import {
   Entity,
   IntegrationStep,
   IntegrationStepExecutionContext,
+  JobState,
   RelationshipClass,
 } from '@jupiterone/integration-sdk-core';
 
-import { createAPIClient } from '../client';
-import { IntegrationConfig } from '../types';
+import { APIClient, createAPIClient } from '../client';
+import { CheckmarxScan, IntegrationConfig } from '../types';
 import { entities, relationships, SERVICE_ENTITY_DATA_KEY } from '../constants';
 
 export function getScanKey(id: number): string {
   return `checkmarx_scan:${id}`;
+}
+
+function shouldFetchLastSuccessfulScan(latestScan: CheckmarxScan) {
+  return (
+    latestScan.status?.name === 'Failed' ||
+    latestScan.status?.name === 'Canceled'
+  );
+}
+
+type GetLatestScanData = {
+  latestScan: CheckmarxScan | undefined;
+  latestSuccessfulScan?: CheckmarxScan | undefined;
+};
+
+/**
+ * Returns the last successful scan and the last failed scan if the last scan
+ * failed
+ */
+async function getScanDataForProject(
+  projectId: string,
+  apiClient: APIClient,
+): Promise<GetLatestScanData> {
+  const latestScan = await apiClient.fetchProjectLastScan(projectId);
+
+  if (!latestScan || !shouldFetchLastSuccessfulScan(latestScan)) {
+    return {
+      latestScan,
+      latestSuccessfulScan: undefined,
+    };
+  }
+
+  const latestSuccessfulScan = await apiClient.fetchLastSuccessfulScan(
+    projectId,
+  );
+
+  return {
+    latestScan,
+    latestSuccessfulScan,
+  };
+}
+
+async function createScanGraphData({
+  jobState,
+  scan,
+  projectEntity,
+  serviceEntity,
+}: {
+  jobState: JobState;
+  scan: CheckmarxScan;
+  projectEntity: Entity;
+  serviceEntity: Entity;
+}) {
+  const scanEntity = await jobState.addEntity(
+    createIntegrationEntity({
+      entityData: {
+        source: scan,
+        assign: {
+          _key: getScanKey(scan.id),
+          _type: entities.ASSESSMENT._type,
+          _class: entities.ASSESSMENT._class,
+          id: `${scan.id}`,
+          name: `${scan.id}`,
+          category: 'Vulnerability Scan',
+          project: scan.project.name,
+          summary: scan.scanType.value,
+          internal: !scan.isPublic,
+          status: scan.status.name,
+          isPublic: scan.isPublic,
+          isLocked: scan.isLocked,
+          scanRisk: scan.scanRisk,
+          scanRiskSeverity: scan.scanRiskSeverity,
+        },
+      },
+    }),
+  );
+
+  await jobState.addRelationship(
+    createDirectRelationship({
+      _class: RelationshipClass.HAS,
+      from: projectEntity,
+      to: scanEntity,
+    }),
+  );
+
+  await jobState.addRelationship(
+    createDirectRelationship({
+      _class: RelationshipClass.PERFORMED,
+      from: serviceEntity,
+      to: scanEntity,
+    }),
+  );
 }
 
 export async function fetchProjectScans({
@@ -29,66 +121,40 @@ export async function fetchProjectScans({
   await jobState.iterateEntities(
     { _type: entities.PROJECT._type },
     async (projectEntity) => {
-      const lastScan = await apiClient.fetchProjectLastScan(
+      const { latestScan, latestSuccessfulScan } = await getScanDataForProject(
         projectEntity.id as string,
+        apiClient,
       );
 
-      if (lastScan) {
+      if (latestSuccessfulScan) {
         logger.info(
           {
-            lastScan,
+            projectId: projectEntity.id,
+            latestScan: latestScan?.id,
+            latestSuccessfulScan: latestSuccessfulScan.id,
+          },
+          'Found an old successful scan',
+        );
+      }
+
+      for (const scan of [latestScan, latestSuccessfulScan]) {
+        if (!scan) continue;
+
+        logger.debug(
+          {
+            scan,
             projectName: projectEntity.name,
             projectId: projectEntity.id,
           },
           `The last project scan`,
         );
 
-        if (
-          lastScan.status.name !== 'Finished' ||
-          lastScan.scanType.value !== 'Regular'
-        ) {
-          return;
-        }
-
-        const scanEntity = createIntegrationEntity({
-          entityData: {
-            source: lastScan,
-            assign: {
-              _key: getScanKey(lastScan.id),
-              _type: entities.ASSESSMENT._type,
-              _class: entities.ASSESSMENT._class,
-              id: `${lastScan.id}`,
-              name: `${lastScan.id}`,
-              category: 'Vulnerability Scan',
-              project: lastScan.project.name,
-              summary: lastScan.scanType.value,
-              internal: !lastScan.isPublic,
-              status: lastScan.status.name,
-              isPublic: lastScan.isPublic,
-              isLocked: lastScan.isLocked,
-              scanRisk: lastScan.scanRisk,
-              scanRiskSeverity: lastScan.scanRiskSeverity,
-            },
-          },
+        await createScanGraphData({
+          jobState,
+          projectEntity,
+          serviceEntity,
+          scan,
         });
-
-        await Promise.all([
-          jobState.addEntity(scanEntity),
-          jobState.addRelationship(
-            createDirectRelationship({
-              _class: RelationshipClass.HAS,
-              from: projectEntity,
-              to: scanEntity,
-            }),
-          ),
-          jobState.addRelationship(
-            createDirectRelationship({
-              _class: RelationshipClass.PERFORMED,
-              from: serviceEntity,
-              to: scanEntity,
-            }),
-          ),
-        ]);
       }
     },
   );

@@ -9,6 +9,10 @@
 - Monitor Checkmarx findings within the alerts app.
 - Monitor changes to Checkmarx projects using JupiterOne alerts.
 
+**NOTE**: The Checkmarx integration currently ingests the _latest_ project scan
+information. If the _latest_ project scan has status "Failed," then the
+integration will also fetch the last _successful_ Checkmarx project scan.
+
 ## How it Works
 
 - JupiterOne periodically fetches teams, assessments, and new findings from

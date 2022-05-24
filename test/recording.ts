@@ -29,7 +29,7 @@ export function setupCheckmarxRecording(
     options: {
       mode: recordingEnabled ? 'record' : 'replay',
       recordIfMissing: recordingEnabled,
-      recordFailedRequests: false,
+      recordFailedRequests: true,
       matchRequestsBy: {
         headers: false,
         body: false,

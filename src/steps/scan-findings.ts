@@ -81,9 +81,8 @@ export async function fetchScanFindings({
         },
         onObtainReportError(scanId, totalWaitSeconds) {
           logger.warn(
-            { scanId },
-            'Failed to obtain scan report within %i seconds',
-            totalWaitSeconds,
+            { scanId, totalWaitSeconds },
+            'Failed to obtain scan report',
           );
         },
       },
@@ -113,16 +112,14 @@ export async function fetchScanFindings({
           },
         });
 
-        await Promise.all([
-          jobState.addEntity(findingEntity),
-          jobState.addRelationship(
-            createDirectRelationship({
-              _class: RelationshipClass.IDENTIFIED,
-              from: scanEntity,
-              to: findingEntity,
-            }),
-          ),
-        ]);
+        await jobState.addEntity(findingEntity);
+        await jobState.addRelationship(
+          createDirectRelationship({
+            _class: RelationshipClass.IDENTIFIED,
+            from: scanEntity,
+            to: findingEntity,
+          }),
+        );
       }
     }
   };
