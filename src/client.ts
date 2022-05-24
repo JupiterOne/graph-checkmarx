@@ -20,6 +20,16 @@ import {
 
 export type ResourceIteratee<T> = (each: T) => Promise<void> | void;
 
+/**
+ * Example:
+ *
+ * {
+ *   messageCode: 47221,
+ *   messageDetails: "Failed to create report for scan 1002043 in 'Failed' status."
+ * }
+ */
+const FAILED_TO_CREATE_REPORT_ERROR_CODE = 47221;
+
 export class APIClient {
   private readonly instanceHostname: string;
   private readonly clientUsername: string;
@@ -170,19 +180,37 @@ export class APIClient {
    */
   public async fetchProjectLastScan(
     projectId: string,
-  ): Promise<CheckmarxScan | null> {
+  ): Promise<CheckmarxScan | undefined> {
     const response = await this.request(
       this.withBaseUri(`sast/scans?projectId=${projectId}&last=1`),
     );
 
     const scans: CheckmarxScan[] = await response.json();
     if (scans.length <= 0) {
-      return null;
+      return undefined;
     }
 
     const scan: CheckmarxScan = scans[0];
 
     return scan;
+  }
+
+  /**
+   * Fetches last successful scan for a given project.
+   *
+   * @param projectId the ID of the project
+   */
+  public async fetchLastSuccessfulScan(
+    projectId: string,
+  ): Promise<CheckmarxScan | undefined> {
+    const response = await this.request(
+      this.withBaseUri(
+        `sast/scans?projectId=${projectId}&last=1&scanStatus=Finished`,
+      ),
+    );
+
+    const scans: CheckmarxScan[] = await response.json();
+    return scans.length > 0 ? scans[0] : undefined;
   }
 
   /**
@@ -193,11 +221,13 @@ export class APIClient {
    */
   public async fetchScanReport(
     scanId: string,
-    options?: {
-      onCsvParseError?: (scanId: string, reportId: string, err: Error) => void;
-      onObtainReportError?: (scanId: string, totalWaitSeconds: number) => void;
+    options: {
+      onCsvParseError: (scanId: string, reportId: string, err: Error) => void;
+      onObtainReportError: (scanId: string, totalWaitSeconds: number) => void;
     },
   ): Promise<CheckmarxReport | null> {
+    const { onCsvParseError, onObtainReportError } = options;
+
     const response = await this.request(
       this.withBaseUri(`reports/sastScan`),
       'POST',
@@ -207,7 +237,14 @@ export class APIClient {
       }),
     );
 
-    const { reportId }: CheckmarxGeneratedReport = await response.json();
+    const sastScanResponse = await response.json();
+
+    if (sastScanResponse.messageCode === FAILED_TO_CREATE_REPORT_ERROR_CODE) {
+      onObtainReportError(scanId, 0);
+      return null;
+    }
+
+    const { reportId } = sastScanResponse as CheckmarxGeneratedReport;
 
     const waitTime = 1500;
     const maxLoops = 5;
@@ -234,7 +271,7 @@ export class APIClient {
             })) as CheckmarxReport;
             return csvObject;
           } catch (err) {
-            options?.onCsvParseError?.(scanId, `${reportId}`, err);
+            onCsvParseError(scanId, `${reportId}`, err);
             return null;
           }
         } else if (status.value === 'Failed') {
@@ -246,7 +283,7 @@ export class APIClient {
     }
 
     const totalWaitSeconds = (loop * waitTime) / 1000;
-    options?.onObtainReportError?.(scanId, totalWaitSeconds);
+    onObtainReportError(scanId, totalWaitSeconds);
     return null;
   }
 }
