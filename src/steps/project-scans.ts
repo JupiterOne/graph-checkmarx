@@ -5,6 +5,7 @@ import {
   IntegrationStep,
   IntegrationStepExecutionContext,
   JobState,
+  parseTimePropertyValue,
   RelationshipClass,
 } from '@jupiterone/integration-sdk-core';
 
@@ -55,6 +56,23 @@ async function getScanDataForProject(
   };
 }
 
+function calculateScanDuration({
+  scanStartedOn,
+  scanFinishedOn,
+}: {
+  scanStartedOn?: number;
+  scanFinishedOn?: number;
+}): number | undefined {
+  if (
+    typeof scanStartedOn === 'undefined' ||
+    typeof scanFinishedOn === 'undefined'
+  ) {
+    return undefined;
+  }
+
+  return scanFinishedOn - scanStartedOn;
+}
+
 async function createScanGraphData({
   jobState,
   scan,
@@ -66,6 +84,9 @@ async function createScanGraphData({
   projectEntity: Entity;
   serviceEntity: Entity;
 }) {
+  const scanStartedOn = parseTimePropertyValue(scan.dateAndTime?.startedOn);
+  const scanFinishedOn = parseTimePropertyValue(scan.dateAndTime?.finishedOn);
+
   const scanEntity = await jobState.addEntity(
     createIntegrationEntity({
       entityData: {
@@ -85,6 +106,13 @@ async function createScanGraphData({
           isLocked: scan.isLocked,
           scanRisk: scan.scanRisk,
           scanRiskSeverity: scan.scanRiskSeverity,
+          startedOn: scanStartedOn,
+          completedOn: scanFinishedOn,
+          scanDuration: calculateScanDuration({
+            scanStartedOn,
+            scanFinishedOn,
+          }),
+          createdOn: scanStartedOn,
         },
       },
     }),
