@@ -1,4 +1,4 @@
-# Integration with JupiterOne
+# Checkmarx
 
 ## Checkmarx + JupiterOne Integration Benefits
 
