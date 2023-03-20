@@ -4,6 +4,8 @@ import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-
 import parse from 'csv-parse';
 import util from 'util';
 
+const DEFAULT_URL = '.checkmarx.net';
+
 const parseAsync = util.promisify((data, options, cb) =>
   parse(data, options, (err, result) => cb(err, result)),
 );
@@ -49,7 +51,10 @@ export class APIClient {
   }
 
   private withBaseUri(path: string): string {
-    return `https://${this.instanceHostname}.checkmarx.net/cxrestapi/${path}`;
+    const isCustomHost = this.instanceHostname.includes('.');
+    return `https://${this.instanceHostname}${
+      isCustomHost ? '' : DEFAULT_URL
+    }/cxrestapi/${path}`;
   }
 
   private async request(
