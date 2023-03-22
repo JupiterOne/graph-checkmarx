@@ -7,22 +7,22 @@ Object {
       "_class": Array [
         "Account",
       ],
-      "_key": "checkmarx_account:partners9x.checkmarx.net",
+      "_key": "checkmarx_account:partners9x",
       "_rawData": Array [
         Object {
           "name": "default",
           "rawData": Object {
-            "name": "partners9x.checkmarx.net",
+            "name": "partners9x",
           },
         },
       ],
       "_type": "checkmarx_account",
       "completedOn": 123456789,
       "createdOn": 123456789,
-      "displayName": "partners9x.checkmarx.net",
-      "name": "partners9x.checkmarx.net",
+      "displayName": "partners9x",
+      "name": "partners9x",
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net",
+      "webLink": "https://partners9x",
     },
     Object {
       "_class": Array [
@@ -82618,16 +82618,16 @@ Object {
   "collectedRelationships": Array [
     Object {
       "_class": "HAS",
-      "_fromEntityKey": "checkmarx_account:partners9x.checkmarx.net",
-      "_key": "checkmarx_account:partners9x.checkmarx.net|has|checkmarx_dast_scanner:Checkmarx DAST",
+      "_fromEntityKey": "checkmarx_account:partners9x",
+      "_key": "checkmarx_account:partners9x|has|checkmarx_dast_scanner:Checkmarx DAST",
       "_toEntityKey": "checkmarx_dast_scanner:Checkmarx DAST",
       "_type": "checkmarx_account_has_dast_scanner",
       "displayName": "HAS",
     },
     Object {
       "_class": "HAS",
-      "_fromEntityKey": "checkmarx_account:partners9x.checkmarx.net",
-      "_key": "checkmarx_account:partners9x.checkmarx.net|has|checkmarx_team:20",
+      "_fromEntityKey": "checkmarx_account:partners9x",
+      "_key": "checkmarx_account:partners9x|has|checkmarx_team:20",
       "_toEntityKey": "checkmarx_team:20",
       "_type": "checkmarx_account_has_team",
       "displayName": "HAS",
