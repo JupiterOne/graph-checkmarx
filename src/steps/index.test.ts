@@ -12,7 +12,7 @@ import { fetchProjectScans } from './project-scans';
 import { fetchScanFindings } from './scan-findings';
 import { setupCheckmarxRecording } from '../../test/recording';
 
-const DEFAULT_INSTANCE_HOSTNAME = 'partners9x';
+const DEFAULT_INSTANCE_HOSTNAME = 'partners9x.checkmarx.net';
 const DEFAULT_CLIENT_USERNAME = 'INVALID';
 const DEFAULT_CLIENT_PASSWORD = 'INVALID';
 
