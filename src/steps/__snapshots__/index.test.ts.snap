@@ -7,22 +7,22 @@ Object {
       "_class": Array [
         "Account",
       ],
-      "_key": "checkmarx_account:partners9x",
+      "_key": "checkmarx_account:partners9x.checkmarx.net",
       "_rawData": Array [
         Object {
           "name": "default",
           "rawData": Object {
-            "name": "partners9x",
+            "name": "partners9x.checkmarx.net",
           },
         },
       ],
       "_type": "checkmarx_account",
       "completedOn": 123456789,
       "createdOn": 123456789,
-      "displayName": "partners9x",
-      "name": "partners9x",
+      "displayName": "partners9x.checkmarx.net",
+      "name": "partners9x.checkmarx.net",
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net",
     },
     Object {
       "_class": Array [
@@ -114,7 +114,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/JupiterOne/graph-checkmarx",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=456",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=456",
     },
     Object {
       "_class": Array [
@@ -154,7 +154,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/OWASP/NodeGoat.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=466",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=466",
     },
     Object {
       "_class": Array [
@@ -194,7 +194,7 @@ Object {
       "remoteSettingsUrl": undefined,
       "remoteSettingsUseSsh": undefined,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=467",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=467",
     },
     Object {
       "_class": Array [
@@ -234,7 +234,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/tjarrettveracode/bodgeit.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=468",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=468",
     },
     Object {
       "_class": Array [
@@ -274,7 +274,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/OWASP/railsgoat.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=471",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=471",
     },
     Object {
       "_class": Array [
@@ -314,7 +314,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/RhinoSecurityLabs/cloudgoat.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=472",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=472",
     },
     Object {
       "_class": Array [
@@ -354,7 +354,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/jtsmith2020/verademo-java.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=474",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=474",
     },
     Object {
       "_class": Array [
@@ -394,7 +394,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/isp1r0/DVNA.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=475",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=475",
     },
     Object {
       "_class": Array [
@@ -434,7 +434,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/SasanLabs/VulnerableApp.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=476",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=476",
     },
     Object {
       "_class": Array [
@@ -474,7 +474,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/SasanLabs/VulnerableApp-php.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=477",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=477",
     },
     Object {
       "_class": Array [
@@ -514,7 +514,7 @@ Object {
       "remoteSettingsUrl": undefined,
       "remoteSettingsUseSsh": undefined,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=478",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=478",
     },
     Object {
       "_class": Array [
@@ -554,7 +554,7 @@ Object {
       "remoteSettingsUrl": undefined,
       "remoteSettingsUseSsh": undefined,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=479",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=479",
     },
     Object {
       "_class": Array [
@@ -594,7 +594,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/julz0815/WebGoatPHP.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=486",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=486",
     },
     Object {
       "_class": Array [
@@ -634,7 +634,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/ericanagle/Hackazon.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=494",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=494",
     },
     Object {
       "_class": Array [
@@ -674,7 +674,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/ericanagle/PyGoat.git",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=495",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=495",
     },
     Object {
       "_class": Array [
@@ -714,7 +714,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/JupiterOne/sdk",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=596",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=596",
     },
     Object {
       "_class": Array [
@@ -754,7 +754,7 @@ Object {
       "remoteSettingsUrl": "https://github.com/austinkelleher/test-scan",
       "remoteSettingsUseSsh": false,
       "startedOn": 123456780,
-      "webLink": "https://partners9x.checkmarx.net/CxWebClient/projectscans.aspx?id=597",
+      "webLink": "https://partners9x.checkmarx.net.checkmarx.net/CxWebClient/projectscans.aspx?id=597",
     },
     Object {
       "_class": Array [
@@ -82618,16 +82618,16 @@ Object {
   "collectedRelationships": Array [
     Object {
       "_class": "HAS",
-      "_fromEntityKey": "checkmarx_account:partners9x",
-      "_key": "checkmarx_account:partners9x|has|checkmarx_dast_scanner:Checkmarx DAST",
+      "_fromEntityKey": "checkmarx_account:partners9x.checkmarx.net",
+      "_key": "checkmarx_account:partners9x.checkmarx.net|has|checkmarx_dast_scanner:Checkmarx DAST",
       "_toEntityKey": "checkmarx_dast_scanner:Checkmarx DAST",
       "_type": "checkmarx_account_has_dast_scanner",
       "displayName": "HAS",
     },
     Object {
       "_class": "HAS",
-      "_fromEntityKey": "checkmarx_account:partners9x",
-      "_key": "checkmarx_account:partners9x|has|checkmarx_team:20",
+      "_fromEntityKey": "checkmarx_account:partners9x.checkmarx.net",
+      "_key": "checkmarx_account:partners9x.checkmarx.net|has|checkmarx_team:20",
       "_toEntityKey": "checkmarx_team:20",
       "_type": "checkmarx_account_has_team",
       "displayName": "HAS",
