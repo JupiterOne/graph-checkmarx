@@ -7,8 +7,6 @@ import {
 import { IntegrationConfig } from '../types';
 import { entities, ACCOUNT_ENTITY_DATA_KEY } from '../constants';
 
-const DEFAULT_URL = '.checkmarx.net';
-
 export function getAccountKey(name: string): string {
   return `checkmarx_account:${name}`;
 }
@@ -18,7 +16,7 @@ export async function fetchAccountDetails({
   jobState,
 }: IntegrationStepExecutionContext<IntegrationConfig>) {
   const company = {
-    name: instance.config.instanceHostname.replace(DEFAULT_URL, ''),
+    name: instance.config.instanceHostname,
   };
 
   const accountEntity = createIntegrationEntity({
