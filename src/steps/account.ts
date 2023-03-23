@@ -26,7 +26,7 @@ export async function fetchAccountDetails({
         _key: getAccountKey(company.name),
         _type: entities.ACCOUNT._type,
         _class: entities.ACCOUNT._class,
-        webLink: `https://${company.name}.checkmarx.net`,
+        webLink: `https://${company.name}`,
         name: company.name,
       },
     },

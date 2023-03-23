@@ -110,7 +110,7 @@ export async function fetchProjects({
           remoteSettingsUrl: projectRemoteSettings?.url,
           remoteSettingsBranch: projectRemoteSettings?.branch,
           remoteSettingsUseSsh: projectRemoteSettings?.useSsh,
-          webLink: `https://${instance.config.instanceHostname}.checkmarx.net/CxWebClient/projectscans.aspx?id=${project.id}`,
+          webLink: `https://${instance.config.instanceHostname}/CxWebClient/projectscans.aspx?id=${project.id}`,
         },
       },
     });

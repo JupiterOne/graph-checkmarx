@@ -56,7 +56,10 @@ The integration connects directly to Checkmarx SAST API.
   needs. You may leave this as `DISABLED` and manually execute the integration.
 - Enter the **Client Username** of the Checkmarx user to authenticate with.
 - Enter the **Client Password** of the Checkmarx user to authenticate with.
-- Enter the **Client Hostname** of the Checkmarx instance.
+- Enter the **Client Hostname** of the Checkmarx instance. For example:
+  `https://{hostname.checkmarx.net}`. If you are not using a custom host, please
+  make sure to include `.checkmarx.net` together with the subdomain. Please do
+  not include the `https://` protocol.
 
 4. Click **Create Configuration** once all values are provided.
 

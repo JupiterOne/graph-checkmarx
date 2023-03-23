@@ -49,7 +49,7 @@ export class APIClient {
   }
 
   private withBaseUri(path: string): string {
-    return `https://${this.instanceHostname}.checkmarx.net/cxrestapi/${path}`;
+    return `https://${this.instanceHostname}/cxrestapi/${path}`;
   }
 
   private async request(

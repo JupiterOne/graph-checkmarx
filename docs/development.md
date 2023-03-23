@@ -27,7 +27,9 @@ CLIENT_PASSWORD="account password here"
 ```
 
 3. Finally, you also need to set .env's INSTANCE_HOSTNAME variable to your
-   workspace name. (https://{workspace-name}.checkmarx.net/).
+   workspace name. (https://{workspace-name.checkmarx.net}). Please make sure to
+   include `.checkmarx.net` together with the subdomain if you are not using a
+   custom host.
 
 ```bash
 INSTANCE_HOSTNAME="workspace name"
