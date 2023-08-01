@@ -8,14 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.5.2 - 2023-08-01
+
+- Pacakge for Collectors
+
 ## 1.5.0 - 2022-05-24
 
 - New properties added to entities:
 
-  | Entity              | Properties     |
-  | ------------------- | -------------- |
-  | `checkmarx_scan`    | `startedOn`    |
-  | `checkmarx_scan`    | `completedOn`  |
+  | Entity           | Properties     |
+  | ---------------- | -------------- |
+  | `checkmarx_scan` | `startedOn`    |
+  | `checkmarx_scan` | `completedOn`  |
   | `checkmarx_scan` | `scanDuration` |
   | `checkmarx_scan` | `createdOn`    |
 
