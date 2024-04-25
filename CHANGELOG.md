@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.5.3 - 2023-04-25
+
+- Update `Dockerfile`
+
 ## 1.5.2 - 2023-08-01
 
 - Pacakge for Collectors
